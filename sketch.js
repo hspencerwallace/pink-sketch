@@ -14,13 +14,13 @@ function draw() {
   push();
   fill(255, 255, 255);
   translate(0, 0, -100);
-  //space rectangle
-  rect(0, -100, 600, 500);
+  //white rectangle
+  rect(0, -100, 700, 600);
   pop();
 
   push();
  
-  //window
+  //black window
   rect(0, -350, 800, 100);
 	rect(0, 300, 800, 300);
 	rect(350, 0, 100, 800);
@@ -28,3 +28,5 @@ function draw() {
 	pop();
   angle += 0.0025;
 }
+
+//next thing is find a tree and make fairy lights particle system
