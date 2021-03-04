@@ -5,12 +5,14 @@ let windowHeight = 1080;
 let halfHeight = windowHeight/2;
 let halfWidth = windowWidth/2;
 let leaves;
+let sky;
 
 
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   leaves = loadImage('GreenLeaves2.jpg');
+  sky = loadImage('delightful-Sky.jpg');
 
  
 }
@@ -26,12 +28,11 @@ function draw() {
   camera(0, 20 + sin(frameCount * (0.05)) * 10, 200 + sin(frameCount * 0.005) * 
     3000, 0, 0, 0, 0, 1, 0);
 
-  // push();
-  // imageMode(CENTER);
-  // translate(0, 0, -halfHeight*2);
-  // image(leaves, 0, 0, windowWidth*2.5, windowHeight*2.5);
-  // // background(leaves);
-  // pop();
+  push();
+  imageMode(CENTER);
+  translate(0, 0, -halfHeight*2);
+  image(sky, 0, 0, windowWidth*2, windowHeight*2);
+  pop();
 
   rectMode(CENTER);
   fill(0,0,0);
@@ -60,4 +61,4 @@ function draw() {
   angle += 0.0025;
 }
 
-//next thing is make fairy lights particle system, explore rotation speed, 
+//next thing is make fairy lights particle system, explore rotation speed, video?, color palette, 
