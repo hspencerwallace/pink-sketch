@@ -1,29 +1,55 @@
 let angle = 0;
+let cameraAngle = 0.0;
 let windowWidth = 1920;
 let windowHeight = 1080;
 let halfHeight = windowHeight/2;
 let halfWidth = windowWidth/2;
+let leaves;
+
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
+  leaves = loadImage('GreenLeaves2.jpg');
+
  
 }
 
 function draw() {
   noStroke();
   background(150);
+
+  // rotation stuff, rotate is below in the moons matrix
+  cameraAngle = cameraAngle + (0.005);
+  let c = tan(cameraAngle);
+//camera rotation stuff
+  camera(0, 20 + sin(frameCount * (0.05)) * 10, 200 + sin(frameCount * 0.005) * 
+    3000, 0, 0, 0, 0, 1, 0);
+
+  // push();
+  // imageMode(CENTER);
+  // translate(0, 0, -halfHeight*2);
+  // image(leaves, 0, 0, windowWidth*2.5, windowHeight*2.5);
+  // // background(leaves);
+  // pop();
+
   rectMode(CENTER);
   fill(0,0,0);
   rotateX(angle);
 
-  push();
-  fill(255, 255, 255);
-  translate(0, 0, -100);
-  //white rectangle
-  rect(0, -100, windowWidth-10, windowHeight-80);
-  pop();
+    push();
+    fill(255, 255, 255);
+    translate(0, 0, -100);
+    //white rectangle
+    rect(0, -100, windowWidth-10, windowHeight-80);
+      push();
+      translate(0, 0, -1);
+      imageMode(CENTER);
+      image(leaves, 0, -100, windowWidth-10, windowHeight-80);
+      pop();
+    pop();
 
-  push();
+    push();
  
   //black window
   rect(0, -halfHeight+50, windowWidth, 100);
