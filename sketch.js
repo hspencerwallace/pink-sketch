@@ -60,4 +60,4 @@ function draw() {
   angle += 0.0025;
 }
 
-//next thing is find a tree and make fairy lights particle system
+//next thing is make fairy lights particle system, explore rotation speed, 
