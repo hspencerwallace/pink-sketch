@@ -7,7 +7,12 @@ let halfWidth = windowWidth/2;
 let leaves;
 let sky;
 let bugs = []; 
+let female_leg;
 
+function preLoad() {
+  female_leg = loadModel('femaleleg.obj', true);
+
+}
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
@@ -71,6 +76,13 @@ function draw() {
     bugs[i].move();
     bugs[i].display();
   }
+
+  //obj 
+  // push();
+  // rotateX(frameCount * 0.01);
+  // rotateY(frameCount * 0.01);
+  model(female_leg);
+  // pop();
 }
 
 // Jitter class
