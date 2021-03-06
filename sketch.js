@@ -8,9 +8,11 @@ let leaves;
 let sky;
 let bugs = []; 
 let female_leg;
+let holdinghands;
 
-function preLoad() {
-  female_leg = loadModel('femaleleg.obj', true);
+function preload() {
+  female_leg = loadModel('femaleleg/femaleleg.obj');
+  //holdinghands = loadModel('holdinghands/holding_hands.obj');
 
 }
 
@@ -78,11 +80,13 @@ function draw() {
   }
 
   //obj 
-  // push();
-  // rotateX(frameCount * 0.01);
-  // rotateY(frameCount * 0.01);
+  push();
+  rotateX(frameCount * 0.01);
+  rotateY(frameCount * 0.01);
+  scale(50); 
   model(female_leg);
-  // pop();
+  //model(holidinghands);
+  pop();
 }
 
 // Jitter class
