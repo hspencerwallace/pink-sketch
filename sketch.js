@@ -6,13 +6,14 @@ let halfHeight = windowHeight/2;
 let halfWidth = windowWidth/2;
 let leaves;
 let sky;
-let legs = []; 
+// let legs = []; 
+let hands = [];
 let female_leg;
-let holdinghands;
+let hand;
 
 function preload() {
-  female_leg = loadModel('femaleleg/femaleleg.obj');
-  //holdinghands = loadModel('holdinghands/holding_hands.obj');
+  // female_leg = loadModel('femaleleg/femaleleg.obj');
+  hand = loadModel('hand/hand.obj');
 
 }
 
@@ -22,8 +23,8 @@ function setup() {
   sky = loadImage('delightful-Sky.jpg');
 
   // Create objects
-  for (let i = 0; i < 40; i++) {
-    legs.push(new Leg());
+  for (let i = 0; i < 20; i++) {
+    hands.push(new Hands());
   }
  
 }
@@ -73,19 +74,24 @@ function draw() {
 
   angle += 0.0025;
 
+  directionalLight(0, 0, 255, -1, 0, -.444);
+  directionalLight(252, 48, 226, 1, 0, 0);
+  directionalLight(229, 255, 41, 0, 0, -1);
+
+
   //
   push();
    translate(0, 0, -100);
-  for (let i = 0; i < legs.length; i++) {
-    legs[i].move();
-    legs[i].display();
+  for (let i = 0; i < hands.length; i++) {
+    hands[i].move();
+    hands[i].display();
   pop();
   }
 
 }
 
-// Leg class
-class Leg {
+// Hand class
+class Hands {
   constructor() {
 
     this.x = random(windowWidth);
@@ -99,9 +105,32 @@ class Leg {
   }
 
   display() {
-  scale(1.08); 
-  model(female_leg);
+  scale(1.25); 
+  fill(250, 175, 230);
+  model(hand);
   }
 }
+
+
+// // Leg class
+// class Leg {
+//   constructor() {
+
+//     this.x = random(windowWidth);
+//     this.y = random(windowHeight);
+//     this.z - random(windowWidth);
+//   }
+
+//   move() {
+//     rotateX(frameCount * 0.01);
+//     rotateY(frameCount * 0.01);
+//   }
+
+//   display() {
+//   scale(1.08); 
+//   specularMaterial(250);
+//   model(female_leg);
+//   }
+// }
 
 //next thing is make fairy lights particle system, explore rotation speed, video?, color palette, 
