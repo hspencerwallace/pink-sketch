@@ -6,7 +6,7 @@ let halfHeight = windowHeight/2;
 let halfWidth = windowWidth/2;
 let leaves;
 let sky;
-let bugs = []; 
+let legs = []; 
 let female_leg;
 let holdinghands;
 
@@ -22,8 +22,8 @@ function setup() {
   sky = loadImage('delightful-Sky.jpg');
 
   // Create objects
-  for (let i = 0; i < 500; i++) {
-    bugs.push(new Jitter());
+  for (let i = 0; i < 40; i++) {
+    legs.push(new Leg());
   }
  
 }
@@ -49,66 +49,58 @@ function draw() {
   rectMode(CENTER);
   fill(0,0,0);
 
-  rotateX(angle);
+  // rotateX(angle);
 
   //white rectangle
-    push();
-    fill(255, 255, 255);
-    translate(0, 0, -100);
-    rect(0, -100, windowWidth-10, windowHeight-80);
-      push();
-      translate(0, 0, -1);
-      imageMode(CENTER);
-      image(leaves, 0, -100, windowWidth-10, windowHeight-80);
-      pop();
-    pop();
+    // push();
+    // fill(255, 255, 255);
+    // translate(0, 0, -100);
+    // rect(0, -100, windowWidth-10, windowHeight-80);
+    //   push();
+    //   translate(0, 0, -1);
+    //   imageMode(CENTER);
+    //   image(leaves, 0, -100, windowWidth-10, windowHeight-80);
+    //   pop();
+    // pop();
  
   //black window
-  push();
-  rect(0, -halfHeight+50, windowWidth, 100);
-	rect(0, halfHeight-150, windowWidth, 300);
-	rect(halfWidth-50, 0, 100, windowHeight);
-	rect(-halfWidth +50, 0, 100, windowHeight);
-	pop();
+ //  push();
+ //  rect(0, -halfHeight+50, windowWidth, 100);
+	// rect(0, halfHeight-150, windowWidth, 300);
+	// rect(halfWidth-50, 0, 100, windowHeight);
+	// rect(-halfWidth +50, 0, 100, windowHeight);
+	// pop();
 
   angle += 0.0025;
 
   //
-  for (let i = 0; i < bugs.length; i++) {
-    bugs[i].move();
-    bugs[i].display();
+  push();
+   translate(0, 0, -100);
+  for (let i = 0; i < legs.length; i++) {
+    legs[i].move();
+    legs[i].display();
+  pop();
   }
 
-  //obj 
-  push();
-  rotateX(frameCount * 0.01);
-  rotateY(frameCount * 0.01);
-  scale(50); 
-  model(female_leg);
-  //model(holidinghands);
-  pop();
 }
 
-// Jitter class
-class Jitter {
+// Leg class
+class Leg {
   constructor() {
 
     this.x = random(windowWidth);
     this.y = random(windowHeight);
-    // this.z - random(windowWidth);
-    this.diameter = random(30, 60);
-    this.speed = 1;
+    this.z - random(windowWidth);
   }
 
   move() {
-    this.x += random(-this.speed, this.speed);
-    this.y += random(-this.speed, this.speed);
-    // this.z += random(-this.speed, this.speed);
+    rotateX(frameCount * 0.01);
+    rotateY(frameCount * 0.01);
   }
 
   display() {
-    translate(-4, -3, random(-5, -4));
-    ellipse(this.x, this.y, this.diameter, this.diameter);
+  scale(1.08); 
+  model(female_leg);
   }
 }
 
