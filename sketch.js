@@ -8,13 +8,12 @@ let leaves;
 let sky;
 // let legs = []; 
 let hands = [];
-let female_leg;
+// let female_leg;
 let hand;
 
 function preload() {
   // female_leg = loadModel('femaleleg/femaleleg.obj');
   hand = loadModel('hand/hand.obj');
-
 }
 
 function setup() {
@@ -43,34 +42,43 @@ function draw() {
   push();
   imageMode(CENTER);
   translate(0, 0, -halfHeight*2);
-  image(sky, 0, 0, windowWidth*2, windowHeight*2);
+  image(sky, 0, 0, windowWidth*5, windowHeight*5);
   pop();
 
   //rectangles
   rectMode(CENTER);
   fill(0,0,0);
 
-  // rotateX(angle);
+  rotateX(angle);
 
-  //white rectangle
-    // push();
+  // white rectangle
+    push();
     // fill(255, 255, 255);
-    // translate(0, 0, -100);
+    directionalLight(59, 196, 255, 0, 0, -1);
+    directionalLight(255, 220, 43, 0, 0, 5);
+  
+    translate(0, -100, -100);
+    specularMaterial(255);
+    shininess(200);
+    plane(windowWidth-10, windowHeight-80);
+
     // rect(0, -100, windowWidth-10, windowHeight-80);
-    //   push();
-    //   translate(0, 0, -1);
-    //   imageMode(CENTER);
-    //   image(leaves, 0, -100, windowWidth-10, windowHeight-80);
-    //   pop();
-    // pop();
+      //leaves
+      // push();
+      // translate(0, 0, -1);
+      // imageMode(CENTER);
+      // // image(leaves, 0, -100, windowWidth-10, windowHeight-80);
+      // pop();
+
+    pop();
  
   //black window
- //  push();
- //  rect(0, -halfHeight+50, windowWidth, 100);
-	// rect(0, halfHeight-150, windowWidth, 300);
-	// rect(halfWidth-50, 0, 100, windowHeight);
-	// rect(-halfWidth +50, 0, 100, windowHeight);
-	// pop();
+  push();
+  rect(0, -halfHeight+50, windowWidth, 100);
+	rect(0, halfHeight-150, windowWidth, 300);
+	rect(halfWidth-50, 0, 100, windowHeight);
+	rect(-halfWidth +50, 0, 100, windowHeight);
+	pop();
 
   angle += 0.0025;
 
