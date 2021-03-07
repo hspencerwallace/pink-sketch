@@ -38,11 +38,18 @@ function draw() {
   camera(0, 20 + sin(frameCount * (0.05)) * 10, 200 + sin(frameCount * 0.005) * 
     3000, 0, 0, 0, 0, 1, 0);
 
-  //pink sky
+  // -z pink sky
   push();
   imageMode(CENTER);
-  translate(0, 0, -halfHeight*2);
+  translate(0, 0, -halfHeight*3);
   image(sky, 0, 0, windowWidth*5, windowHeight*5);
+  pop();
+
+  // +z pink sky
+  push();
+  imageMode(CENTER);
+  translate(0, 0, halfHeight*4);
+  image(sky, 0, 0, windowWidth*6, windowHeight*6);
   pop();
 
   //rectangles
@@ -55,14 +62,14 @@ function draw() {
     push();
     // fill(255, 255, 255);
     directionalLight(59, 196, 255, -0.5, -0.5, -1);
-    directionalLight(255, 220, 43, 0.5, 0.5, 5);
+    directionalLight(255, 220, 94, 0.5, 0.5, 5);
 
      pointLight(59, 196, 255, -0.5, -0.5, -1);
-     pointLight(255, 220, 43, 0.5, 0.5, 5);
+     pointLight(255, 220, 94, 0.5, 0.5, 5);
   
     translate(0, -100, -100);
     specularMaterial(255);
-    shininess(200);
+    shininess(20);
     plane(windowWidth-10, windowHeight-80);
 
     // rect(0, -100, windowWidth-10, windowHeight-80);
