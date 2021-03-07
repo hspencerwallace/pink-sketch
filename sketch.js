@@ -54,8 +54,11 @@ function draw() {
   // white rectangle
     push();
     // fill(255, 255, 255);
-    directionalLight(59, 196, 255, 0, 0, -1);
-    directionalLight(255, 220, 43, 0, 0, 5);
+    directionalLight(59, 196, 255, -0.5, -0.5, -1);
+    directionalLight(255, 220, 43, 0.5, 0.5, 5);
+
+     pointLight(59, 196, 255, -0.5, -0.5, -1);
+     pointLight(255, 220, 43, 0.5, 0.5, 5);
   
     translate(0, -100, -100);
     specularMaterial(255);
@@ -119,26 +122,4 @@ class Hands {
   }
 }
 
-
-// // Leg class
-// class Leg {
-//   constructor() {
-
-//     this.x = random(windowWidth);
-//     this.y = random(windowHeight);
-//     this.z - random(windowWidth);
-//   }
-
-//   move() {
-//     rotateX(frameCount * 0.01);
-//     rotateY(frameCount * 0.01);
-//   }
-
-//   display() {
-//   scale(1.08); 
-//   specularMaterial(250);
-//   model(female_leg);
-//   }
-// }
-
-//next thing is make fairy lights particle system, explore rotation speed, video?, color palette, 
+//make array of lights to make shininess pop and glittery vibez
