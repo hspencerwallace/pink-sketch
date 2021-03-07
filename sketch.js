@@ -11,6 +11,13 @@ let hands = [];
 // let female_leg;
 let hand;
 
+
+// the frame rate (frames per second)
+var fps = 60;
+// the canvas capturer instance
+var capturer = new CCapture({ format: 'png', framerate: fps });
+var startMillis; 
+
 function preload() {
   // female_leg = loadModel('femaleleg/femaleleg.obj');
   hand = loadModel('hand/hand.obj');
@@ -29,6 +36,38 @@ function setup() {
 }
 
 function draw() {
+
+  //
+
+   if (frameCount === 1) {
+    // start the recording on the first frame
+    // this avoids the code freeze which occurs if capturer.start is called
+    // in the setup, since v0.9 of p5.js
+    capturer.start();
+  }
+
+  if (startMillis == null) {
+    startMillis = millis();
+  }
+
+  // duration in milliseconds
+  var duration = 5000;
+
+  // compute how far we are through the animation as a value 
+  // between 0 and 1.
+  var elapsed = millis() - startMillis;
+  var t = map(elapsed, 0, duration, 0, 1);
+
+  // if we have passed t=1 then end the animation.
+  if (t > 1) {
+    noLoop();
+    console.log('finished recording.');
+    capturer.stop();
+    capturer.save();
+    return;
+  }
+  //
+
   noStroke();
   background(150);
 
@@ -105,6 +144,9 @@ function draw() {
     hands[i].display();
   pop();
   }
+// handle saving the frame
+  console.log('capturing frame');
+  capturer.capture(canvas);
 
 }
 
