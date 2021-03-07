@@ -15,7 +15,7 @@ let hand;
 // the frame rate (frames per second)
 var fps = 60;
 // the canvas capturer instance
-var capturer = new CCapture({ format: 'png', framerate: fps });
+var capturer;
 var startMillis; 
 
 function preload() {
@@ -27,6 +27,8 @@ function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   leaves = loadImage('GreenLeaves2.jpg');
   sky = loadImage('delightful-Sky.jpg');
+
+  capturer = new CCapture({ format: 'png', framerate: fps });
 
   // Create objects
   for (let i = 0; i < 20; i++) {
