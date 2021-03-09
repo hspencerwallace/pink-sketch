@@ -29,7 +29,7 @@ function setup() {
   // capturer = new CCapture({ format: 'png', framerate: fps });
 
   // Create objects
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 40; i++) {
     hands.push(new Hands());
   }
  
@@ -46,12 +46,12 @@ function draw() {
   //   capturer.start();
   // }
 
-  if (startMillis == null) {
-    startMillis = millis();
-  }
+  // if (startMillis == null) {
+  //   startMillis = millis();
+  // }
 
   // duration in milliseconds
-  var duration = 5000;
+  var duration = 10000;
 
   // compute how far we are through the animation as a value 
   // between 0 and 1.
@@ -71,23 +71,22 @@ function draw() {
   noStroke();
   background(150);
 
+
   // camera rotation 
 
-  // cameraAngle = cameraAngle + (0.005);
-  // let c = tan(cameraAngle);
   camera(0, 20 + sin(frameCount * (0.05)) * 10, 200 + sin(frameCount * 0.001) * 3000, 0, 0, 0, 0, 1, 0);
 
   // -z pink sky
   push();
   imageMode(CENTER);
-  translate(0, 0, -halfHeight*3);
+  translate(0, 0, -halfHeight*3.01);
   image(sky, 0, 0, windowWidth*5, windowHeight*5);
   pop();
 
   // +z pink sky
   push();
   imageMode(CENTER);
-  translate(0, 0, halfHeight*4);
+  translate(0, 0, halfHeight*4.01);
   image(sky, 0, 0, windowWidth*6, windowHeight*6);
   pop();
 
@@ -157,15 +156,17 @@ class Hands {
     this.x = random(windowWidth);
     this.y = random(windowHeight);
     this.z - random(windowWidth);
+    this.random = random(1, 5);
   }
 
   move() {
-    rotateX(frameCount * 0.001);
-    rotateY(frameCount * 0.001);
+    rotateX(frameCount * 0.0055);
+    rotateY(frameCount * 0.0055);
+
   }
 
   display() {
-  scale(1.25); 
+  scale(1.101); 
   fill(250, 175, 230);
   model(hand);
   }
