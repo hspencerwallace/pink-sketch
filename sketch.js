@@ -4,16 +4,14 @@ let windowWidth = 1920;
 let windowHeight = 1080;
 let halfHeight = windowHeight/2;
 let halfWidth = windowWidth/2;
-let leaves;
+// let leaves;
 let sky;
-// let legs = []; 
 let hands = [];
-// let female_leg;
 let hand;
-
+let slower = 0.2;
 
 // the frame rate (frames per second)
-var fps = 60;
+var fps = 30;
 // the canvas capturer instance
 var capturer;
 var startMillis; 
@@ -27,8 +25,8 @@ function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   leaves = loadImage('GreenLeaves2.jpg');
   sky = loadImage('delightful-Sky.jpg');
-
-  capturer = new CCapture({ format: 'png', framerate: fps });
+  frameRate(fps);
+  // capturer = new CCapture({ format: 'png', framerate: fps });
 
   // Create objects
   for (let i = 0; i < 20; i++) {
@@ -41,12 +39,12 @@ function draw() {
 
   //
 
-   if (frameCount === 1) {
-    // start the recording on the first frame
-    // this avoids the code freeze which occurs if capturer.start is called
-    // in the setup, since v0.9 of p5.js
-    capturer.start();
-  }
+  //  if (frameCount === 1) {
+  //   // start the recording on the first frame
+  //   // this avoids the code freeze which occurs if capturer.start is called
+  //   // in the setup, since v0.9 of p5.js
+  //   capturer.start();
+  // }
 
   if (startMillis == null) {
     startMillis = millis();
@@ -61,23 +59,23 @@ function draw() {
   var t = map(elapsed, 0, duration, 0, 1);
 
   // if we have passed t=1 then end the animation.
-  if (t > 1) {
-    noLoop();
-    console.log('finished recording.');
-    capturer.stop();
-    capturer.save();
-    return;
-  }
+  // if (t > 1) {
+  //   noLoop();
+  //   console.log('finished recording.');
+  //   capturer.stop();
+  //   capturer.save();
+  //   return;
+  // }
   //
 
   noStroke();
   background(150);
 
   // camera rotation 
-  cameraAngle = cameraAngle + (0.005);
-  let c = tan(cameraAngle);
-  camera(0, 20 + sin(frameCount * (0.05)) * 10, 200 + sin(frameCount * 0.005) * 
-    3000, 0, 0, 0, 0, 1, 0);
+
+  // cameraAngle = cameraAngle + (0.005);
+  // let c = tan(cameraAngle);
+  camera(0, 20 + sin(frameCount * (0.05)) * 10, 200 + sin(frameCount * 0.001) * 3000, 0, 0, 0, 0, 1, 0);
 
   // -z pink sky
   push();
@@ -147,8 +145,8 @@ function draw() {
   pop();
   }
 // handle saving the frame
-  console.log('capturing frame');
-  capturer.capture(canvas);
+  // console.log('capturing frame');
+  // capturer.capture(canvas);
 
 }
 
@@ -162,8 +160,8 @@ class Hands {
   }
 
   move() {
-    rotateX(frameCount * 0.01);
-    rotateY(frameCount * 0.01);
+    rotateX(frameCount * 0.001);
+    rotateY(frameCount * 0.001);
   }
 
   display() {
@@ -173,4 +171,4 @@ class Hands {
   }
 }
 
-//make array of lights to make shininess pop and glittery vibez
+// ffmpeg -r 30 -f image2 -s 1920x1080 -i "%07d.png" -vcodec libx264 -crf 17 -pix_fmt yuv420p output.mp4
