@@ -74,7 +74,7 @@ function draw() {
 
   // camera rotation 
 
-  camera(0, 20 + sin(frameCount * (0.05)) * 10, 200 + sin(frameCount * 0.001) * 3000, 0, 0, 0, 0, 1, 0);
+  camera(0, 20 + sin(frameCount * (0.05)) * 10, 200 + sin(frameCount * 0.01) * 3000, 0, 0, 0, 0, 1, 0);
 
   // -z pink sky
   push();
@@ -141,8 +141,9 @@ function draw() {
   for (let i = 0; i < hands.length; i++) {
     hands[i].move();
     hands[i].display();
-  pop();
   }
+  pop();
+
 // handle saving the frame
   // console.log('capturing frame');
   // capturer.capture(canvas);
