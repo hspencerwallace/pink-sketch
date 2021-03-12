@@ -9,8 +9,12 @@ let sky;
 let hands = [];
 let hand;
 let slower = 0.2;
+
 let sculpture1;
 let sculpture2;
+let sculpture3;
+let sculpture11;
+let lineup;
 
 // the frame rate (frames per second)
 var fps = 30;
@@ -29,6 +33,9 @@ function setup() {
   sky = loadImage('delightful-Sky.jpg');
   sculpture1 = loadImage('1.png');
   sculpture2 = loadImage('2.png');
+  sculpture3 = loadImage('3.png');
+  sculpture11 = loadImage('11.png');
+  lineup = loadImage('placeholder.png');
   frameRate(fps);
   // capturer = new CCapture({ format: 'png', framerate: fps });
 
@@ -85,20 +92,57 @@ function draw() {
   imageMode(CENTER);
   translate(0, 0, -halfHeight*3.01);
   image(sky, 0, 0, windowWidth*5, windowHeight*5);
-  translate(0, 0, -10);
-  image(sculpture1, 0, 0);
-  sculpture1.resize(0, halfHeight * 1.75);
+  translate(0, 0, -300);
+
+   push();
+   rotateY(PI);
+   translate(50, 0, 0);
+   image(lineup, 0, 0);
+   lineup.resize(0, halfHeight-100);
+   pop();
+
+   push();
+   translate(halfWidth/2, 0, 0);
+   image(sculpture1, 0, 0);
+   sculpture1.resize(0, halfHeight * 1.5);
+   pop();
+
+   push();
+   translate(-halfWidth/2 - 40, -100, 1);
+   image(sculpture2, 0, 0);
+   sculpture2.resize(0, halfHeight * 1.5);
+   pop();
+
   pop();
+
 
   // +(?)z pink sky, first one you see
   push();
   imageMode(CENTER);
   translate(0, 0, halfHeight*4.01);
   image(sky, 0, 0, windowWidth*6, windowHeight*6);
-   translate(0, 0, 10);
-  image(sculpture2, 0, 0);
-  sculpture2.resize(0, halfHeight * 1.75);
+  translate(0, 0, 300);
+
+    push();
+    translate(50, 0, 0);
+    image(lineup, 0, 0);
+    lineup.resize(0, halfHeight-100);
+    pop();
+
+    push();
+    translate(-halfWidth/2, 0, 0);
+    image(sculpture3, 0, 0);
+    sculpture3.resize(0, halfHeight * 1.5);
+    pop();
+
+    push();
+    translate(halfWidth/2, 0, 0);
+    image(sculpture11, 0, 0);
+    sculpture11.resize(0, halfHeight * 1.5);
+    pop();
+
   pop();
+  
 
   //rectangles
   rectMode(CENTER);
@@ -178,7 +222,7 @@ class Hands {
 
   display() {
   scale(1.101); 
-  fill(250, 175, 230);
+  fill(252, 61, 192);
   model(hand);
   }
 }
