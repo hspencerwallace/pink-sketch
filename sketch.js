@@ -4,11 +4,13 @@ let windowWidth = 1920;
 let windowHeight = 1080;
 let halfHeight = windowHeight/2;
 let halfWidth = windowWidth/2;
-// let leaves;
+
 let sky;
 let hands = [];
 let hand;
 let slower = 0.2;
+let sculpture1;
+let sculpture2;
 
 // the frame rate (frames per second)
 var fps = 30;
@@ -23,8 +25,10 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
-  leaves = loadImage('GreenLeaves2.jpg');
+ 
   sky = loadImage('delightful-Sky.jpg');
+  sculpture1 = loadImage('1.png');
+  sculpture2 = loadImage('2.png');
   frameRate(fps);
   // capturer = new CCapture({ format: 'png', framerate: fps });
 
@@ -76,18 +80,24 @@ function draw() {
 
   camera(0, 20 + sin(frameCount * (0.05)) * 10, 200 + sin(frameCount * 0.01) * 3000, 0, 0, 0, 0, 1, 0);
 
-  // -z pink sky
+  // -(?)z pink sky, second one you see
   push();
   imageMode(CENTER);
   translate(0, 0, -halfHeight*3.01);
   image(sky, 0, 0, windowWidth*5, windowHeight*5);
+  translate(0, 0, -10);
+  image(sculpture1, 0, 0);
+  sculpture1.resize(0, halfHeight * 1.75);
   pop();
 
-  // +z pink sky
+  // +(?)z pink sky, first one you see
   push();
   imageMode(CENTER);
   translate(0, 0, halfHeight*4.01);
   image(sky, 0, 0, windowWidth*6, windowHeight*6);
+   translate(0, 0, 10);
+  image(sculpture2, 0, 0);
+  sculpture2.resize(0, halfHeight * 1.75);
   pop();
 
   //rectangles
