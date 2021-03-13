@@ -8,7 +8,6 @@ let halfWidth = windowWidth/2;
 let sky;
 let hands = [];
 let hand;
-let slower = 0.2;
 
 let sculpture1;
 let sculpture2;
@@ -37,7 +36,7 @@ function setup() {
   sculpture11 = loadImage('11.png');
   lineup = loadImage('placeholder.png');
   frameRate(fps);
-  // capturer = new CCapture({ format: 'png', framerate: fps });
+  capturer = new CCapture({ format: 'png', framerate: fps });
 
   // Create objects
   for (let i = 0; i < 40; i++) {
@@ -50,19 +49,17 @@ function draw() {
 
   //
 
-  //  if (frameCount === 1) {
-  //   // start the recording on the first frame
-  //   // this avoids the code freeze which occurs if capturer.start is called
-  //   // in the setup, since v0.9 of p5.js
-  //   capturer.start();
-  // }
+   if (frameCount === 1) {
+    // start the recording on the first frame
+    capturer.start();
+  }
 
-  // if (startMillis == null) {
-  //   startMillis = millis();
-  // }
+  if (startMillis == null) {
+    startMillis = millis();
+  }
 
   // duration in milliseconds
-  var duration = 10000;
+  var duration = 60000;
 
   // compute how far we are through the animation as a value 
   // between 0 and 1.
@@ -70,13 +67,13 @@ function draw() {
   var t = map(elapsed, 0, duration, 0, 1);
 
   // if we have passed t=1 then end the animation.
-  // if (t > 1) {
-  //   noLoop();
-  //   console.log('finished recording.');
-  //   capturer.stop();
-  //   capturer.save();
-  //   return;
-  // }
+  if (t > 1) {
+    noLoop();
+    console.log('finished recording.');
+    capturer.stop();
+    capturer.save();
+    return;
+  }
   //
 
   noStroke();
@@ -85,7 +82,7 @@ function draw() {
 
   // camera rotation 
 
-  camera(0, 20 + sin(frameCount * (0.05)) * 10, 200 + sin(frameCount * 0.01) * 3000, 0, 0, 0, 0, 1, 0);
+  camera(0, 20 + sin(frameCount * (0.05)) * 10, 200 + sin(frameCount * 0.0007) * 3000, 0, 0, 0, 0, 1, 0);
 
   // -(?)z pink sky, second one you see
   push();
@@ -152,37 +149,30 @@ function draw() {
 
   // white rectangle
     push();
-    // fill(255, 255, 255);
+
     directionalLight(59, 196, 255, -0.5, -0.5, -1);
     directionalLight(255, 220, 94, 0.5, 0.5, 5);
 
-     pointLight(59, 196, 255, -0.5, -0.5, -1);
-     pointLight(255, 220, 94, 0.5, 0.5, 5);
+    pointLight(59, 196, 255, -0.5, -0.5, -1);
+    pointLight(255, 220, 94, 0.5, 0.5, 5);
   
     translate(0, -100, -100);
     specularMaterial(255);
     shininess(20);
     plane(windowWidth-10, windowHeight-80);
 
-    // rect(0, -100, windowWidth-10, windowHeight-80);
-      //leaves
-      // push();
-      // translate(0, 0, -1);
-      // imageMode(CENTER);
-      // // image(leaves, 0, -100, windowWidth-10, windowHeight-80);
-      // pop();
-
     pop();
  
   //black window
-  push();
-  rect(0, -halfHeight+50, windowWidth, 100);
-	rect(0, halfHeight-150, windowWidth, 300);
-	rect(halfWidth-50, 0, 100, windowHeight);
-	rect(-halfWidth +50, 0, 100, windowHeight);
-	pop();
+    push();
+    rect(0, -halfHeight+50, windowWidth, 100);
+  	rect(0, halfHeight-150, windowWidth, 300);
+  	rect(halfWidth-50, 0, 100, windowHeight);
+  	rect(-halfWidth +50, 0, 100, windowHeight);
+  	pop();
 
-  angle += 0.0025;
+  //angle += 0.0025 is old setting with sin 0.001 above
+  angle += 0.0014;
 
   directionalLight(0, 0, 255, -1, 0, -.444);
   directionalLight(252, 48, 226, 1, 0, 0);
@@ -199,8 +189,8 @@ function draw() {
   pop();
 
 // handle saving the frame
-  // console.log('capturing frame');
-  // capturer.capture(canvas);
+  console.log('capturing frame');
+  capturer.capture(canvas);
 
 }
 
@@ -215,8 +205,12 @@ class Hands {
   }
 
   move() {
-    rotateX(frameCount * 0.0055);
-    rotateY(frameCount * 0.0055);
+    //old setting is
+    // rotateX(frameCount * 0.0055);
+    // rotateY(frameCount * 0.0055);
+
+    rotateX(frameCount * 0.0025);
+    rotateY(frameCount * 0.0025);
 
   }
 
@@ -226,5 +220,13 @@ class Hands {
   model(hand);
   }
 }
+
+// slower_tar_30fps_30sec_sin0008_angle_0025_rotate_004.mp4  # hands still too fast
+
+//slower_tar_30fps_60sec_sin0007_angle_0015_rotate_001.mp4   # hands too slow! try .0025, should make the angle a tiiiiny bit slower, try .0014, sin seems good!
+
+//slower_tar_30fps_60sec_sin0007_angle_0014_rotate_0025.mp4   # make it 1/8 faster? thus make angle a tiny bit faster too?
+
+
 
 // ffmpeg -r 30 -f image2 -s 1920x1080 -i "%07d.png" -vcodec libx264 -crf 17 -pix_fmt yuv420p output.mp4
