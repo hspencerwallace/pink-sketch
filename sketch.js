@@ -16,6 +16,9 @@ let sculpture11;
 let lineup;
 var duration;
 
+let pinknoise;
+let hah;
+
 // the frame rate (frames per second)
 var fps = 30;
 // the canvas capturer instance
@@ -36,6 +39,8 @@ function setup() {
   sculpture3 = loadImage('3.png');
   sculpture11 = loadImage('11.png');
   lineup = loadImage('placeholder.png');
+  pinknoise = loadImage('pink_noise_vi.png')
+  hah = loadImage('hah.png')
   frameRate(fps);
   // capturer = new CCapture({ format: 'png', framerate: fps });
 
@@ -99,6 +104,13 @@ function draw() {
    lineup.resize(0, halfHeight-100);
    pop();
 
+    push();
+    rotateY(PI);
+    translate(0, 0, 0);
+    image(hah, 25, 500);
+    hah.resize(0, halfHeight-175);
+    pop();
+
    push();
    translate(halfWidth/2, 0, 0);
    image(sculpture1, 0, 0);
@@ -125,6 +137,12 @@ function draw() {
     translate(50, 0, 0);
     image(lineup, 0, 0);
     lineup.resize(0, halfHeight-100);
+    pop();
+
+    push();
+    translate(0, 0, 0);
+    image(hah, 25, 500);
+    hah.resize(0, halfHeight-175);
     pop();
 
     push();
@@ -170,6 +188,11 @@ function draw() {
   	rect(0, halfHeight-150, windowWidth, 300);
   	rect(halfWidth-50, 0, 100, windowHeight);
   	rect(-halfWidth +50, 0, 100, windowHeight);
+      push();
+      translate(100, 0, 100);
+      image(pinknoise, -1000, 325);
+      pinknoise.resize(0, halfHeight-300);
+      pop();
   	pop();
 
 
