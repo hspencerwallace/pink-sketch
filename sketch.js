@@ -37,7 +37,7 @@ function setup() {
   sculpture11 = loadImage('11.png');
   lineup = loadImage('placeholder.png');
   frameRate(fps);
-  capturer = new CCapture({ format: 'png', framerate: fps });
+  // capturer = new CCapture({ format: 'png', framerate: fps });
 
   // Create objects
   for (let i = 0; i < 40; i++) {
@@ -50,31 +50,31 @@ function draw() {
 
   //
 
-   if (frameCount === 1) {
-    // start the recording on the first frame
-    capturer.start();
-  }
+  //  if (frameCount === 1) {
+  //   // start the recording on the first frame
+  //   capturer.start();
+  // }
 
-  if (startMillis == null) {
-    startMillis = millis();
-  }
+  // if (startMillis == null) {
+  //   startMillis = millis();
+  // }
 
-  // duration in milliseconds
-  duration = 39000;
+  // // duration in milliseconds
+  // duration = 39000;
 
-  // compute how far we are through the animation as a value 
-  // between 0 and 1.
-  var elapsed = millis() - startMillis;
-  var t = map(elapsed, 0, duration, 0, 1);
+  // // compute how far we are through the animation as a value 
+  // // between 0 and 1.
+  // var elapsed = millis() - startMillis;
+  // var t = map(elapsed, 0, duration, 0, 1);
 
   // if we have passed t=1 then end the animation.
-  if (t > 1) {
-    noLoop();
-    console.log('finished recording.');
-    capturer.stop();
-    capturer.save();
-    return;
-  }
+  // if (t > 1) {
+  //   noLoop();
+  //   console.log('finished recording.');
+  //   capturer.stop();
+  //   capturer.save();
+  //   return;
+  // }
   //
 
   noStroke();
@@ -172,8 +172,8 @@ function draw() {
   	rect(-halfWidth +50, 0, 100, windowHeight);
   	pop();
 
-  //angle += 0.0025 is old setting with sin 0.001 above
-  angle += 0.0022;
+
+  angle += 0.00075;
 
   directionalLight(0, 0, 255, -1, 0, -.444);
   directionalLight(252, 48, 226, 1, 0, 0);
@@ -190,8 +190,8 @@ function draw() {
   pop();
 
 // handle saving the frame
-  console.log('capturing frame');
-  capturer.capture(canvas);
+  // console.log('capturing frame');
+  // capturer.capture(canvas);
 
 }
 
@@ -246,9 +246,11 @@ class Hands {
 
 //fine_tar_30fps_39sec_sin0015_angle_0022_rotate_0035 # sin is perfect! make angle a little faster tho. 
 
+//gorg_tar_30fps_39sec_sin0015_angle_00255_rotate_0035 # angle should be a little faster even tho
 
+//gorg_tar_30fps_39sec_sin0015_angle_00265_rotate_0035 # checking angle
 
-
+//correct_tar_30fps_39sec_sin0015_angle_00075_rotate_0035 # 
 
 
 // ffmpeg -r 30 -f image2 -s 1920x1080 -i "%07d.png" -vcodec libx264 -crf 17 -pix_fmt yuv420p output.mp4
