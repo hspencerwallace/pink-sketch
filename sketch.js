@@ -14,6 +14,7 @@ let sculpture2;
 let sculpture3;
 let sculpture11;
 let lineup;
+var duration;
 
 // the frame rate (frames per second)
 var fps = 30;
@@ -59,7 +60,7 @@ function draw() {
   }
 
   // duration in milliseconds
-  var duration = 60000;
+  duration = 39000;
 
   // compute how far we are through the animation as a value 
   // between 0 and 1.
@@ -81,8 +82,8 @@ function draw() {
 
 
   // camera rotation 
-
-  camera(0, 20 + sin(frameCount * (0.05)) * 10, 200 + sin(frameCount * 0.0007) * 3000, 0, 0, 0, 0, 1, 0);
+// used to be sin 0.001
+  camera(0, 20 + sin(frameCount * (0.05)) * 10, 200 + sin(frameCount * 0.0015) * 3000, 0, 0, 0, 0, 1, 0);
 
   // -(?)z pink sky, second one you see
   push();
@@ -172,7 +173,7 @@ function draw() {
   	pop();
 
   //angle += 0.0025 is old setting with sin 0.001 above
-  angle += 0.0014;
+  angle += 0.0022;
 
   directionalLight(0, 0, 255, -1, 0, -.444);
   directionalLight(252, 48, 226, 1, 0, 0);
@@ -209,8 +210,8 @@ class Hands {
     // rotateX(frameCount * 0.0055);
     // rotateY(frameCount * 0.0055);
 
-    rotateX(frameCount * 0.0025);
-    rotateY(frameCount * 0.0025);
+    rotateX(frameCount * 0.0035);
+    rotateY(frameCount * 0.0035);
 
   }
 
@@ -226,6 +227,27 @@ class Hands {
 //slower_tar_30fps_60sec_sin0007_angle_0015_rotate_001.mp4   # hands too slow! try .0025, should make the angle a tiiiiny bit slower, try .0014, sin seems good!
 
 //slower_tar_30fps_60sec_sin0007_angle_0014_rotate_0025.mp4   # make it 1/8 faster? thus make angle a tiny bit faster too?
+
+
+//sin 0007 takes 1:15 or so to reach max dist.
+//sin 001? takes :10(?), and full length of loop is 1:24, or 84 seconds. 84/10 = 8.4
+// if we want a 5:30 length loop, or 330 seconds, that initial time to reach max length needs to be 330/8.4 = 39 seconds.
+// 0010 is 10
+// 0007 is 75
+// 003/
+//
+// 0095 ishhh is 39 seconds
+
+//med_tar_30fps_60sec_sin0095_angle_002_rotate_0032.mp4 # was a messup. Needed an extra 0 in sin
+
+//med_tar_30fps_60sec_sin00095_angle_002_rotate_0032.mp4 # is too slow, the first full zoomout takes a minute. 
+
+//med_tar_30fps_39sec_sin001_angle_0025_rotate_0032 # is still a little too long. take it to sin 0015, make rotate slightly faster? make angle slightly slower maybe 22
+
+//fine_tar_30fps_39sec_sin0015_angle_0022_rotate_0035 # sin is perfect! make angle a little faster tho. 
+
+
+
 
 
 
