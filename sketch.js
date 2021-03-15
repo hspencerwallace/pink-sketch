@@ -16,6 +16,8 @@ let sculpture11;
 let lineup;
 var duration;
 
+let t;
+
 let pinknoise;
 let hah;
 
@@ -39,10 +41,10 @@ function setup() {
   sculpture3 = loadImage('3.png');
   sculpture11 = loadImage('11.png');
   lineup = loadImage('placeholder.png');
-  pinknoise = loadImage('pink_noise_vi.png')
+  pinknoise = loadImage('pink noise title left.png')
   hah = loadImage('hah.png')
   frameRate(fps);
-  // capturer = new CCapture({ format: 'png', framerate: fps });
+  // capturer = new CCapture({ format: 'png', framerate: fps, autoSaveTime: 30 });
 
   // Create objects
   for (let i = 0; i < 40; i++) {
@@ -188,11 +190,17 @@ function draw() {
   	rect(0, halfHeight-150, windowWidth, 300);
   	rect(halfWidth-50, 0, 100, windowHeight);
   	rect(-halfWidth +50, 0, 100, windowHeight);
+     push();
+      translate(-1800, -100, 0);
+      image(pinknoise, 0, 0);
+      pinknoise.resize(0, halfHeight);
+    pop();
       push();
-      translate(100, 0, 100);
-      image(pinknoise, -1000, 325);
-      pinknoise.resize(0, halfHeight-300);
-      pop();
+      rotateY(PI);
+      translate(-1800, -100, 0);
+      image(pinknoise, 0, 0);
+      pinknoise.resize(0, halfHeight);
+    pop();
   	pop();
 
 
