@@ -40,7 +40,7 @@ function setup() {
   sculpture2 = loadImage('2.png');
   sculpture3 = loadImage('3.png');
   sculpture11 = loadImage('11.png');
-  lineup = loadImage('placeholder.png');
+  lineup = loadImage('pinknoise_mainstage.png');
   pinknoise = loadImage('pink noise title left.png')
   hah = loadImage('hah.png')
   frameRate(fps);
@@ -90,7 +90,7 @@ function draw() {
 
   // camera rotation 
 // used to be sin 0.001
-  camera(0, 20 + sin(frameCount * (0.05)) * 10, 200 + sin(frameCount * 0.0015) * 3000, 0, 0, 0, 0, 1, 0);
+  camera(0, 20 + sin(frameCount * (0.05)) * 10, 200 + sin(frameCount * 0.015) * 3000, 0, 0, 0, 0, 1, 0);
 
   // -(?)z pink sky, second one you see
   push();
@@ -102,26 +102,26 @@ function draw() {
    push();
    rotateY(PI);
    translate(50, 0, 0);
-   image(lineup, 0, 0);
+   image(lineup, 25, 0);
    lineup.resize(0, halfHeight-100);
    pop();
 
     push();
     rotateY(PI);
-    translate(0, 0, 0);
-    image(hah, 25, 500);
+    translate(0, 0, 50);
+    image(hah, -25, 400);
     hah.resize(0, halfHeight-175);
     pop();
 
    push();
-   translate(halfWidth/2, 0, 0);
-   image(sculpture1, 0, 0);
+   translate(halfWidth/2, 0, -1);
+   image(sculpture1, 150, 0);
    sculpture1.resize(0, halfHeight * 1.5);
    pop();
 
    push();
-   translate(-halfWidth/2 - 40, -100, 1);
-   image(sculpture2, 0, 0);
+   translate(-halfWidth/2 - 40, -100, -1);
+   image(sculpture2, -100, 0);
    sculpture2.resize(0, halfHeight * 1.5);
    pop();
 
@@ -142,19 +142,19 @@ function draw() {
     pop();
 
     push();
-    translate(0, 0, 0);
-    image(hah, 25, 500);
+    translate(0, 0, 50);
+    image(hah, -25, 400);
     hah.resize(0, halfHeight-175);
     pop();
 
     push();
-    translate(-halfWidth/2, 0, 0);
-    image(sculpture3, 0, 0);
+    translate(-halfWidth/2, 0, 20);
+    image(sculpture3, -100, 0);
     sculpture3.resize(0, halfHeight * 1.5);
     pop();
 
     push();
-    translate(halfWidth/2, 0, 0);
+    translate(halfWidth/2, 0, 20);
     image(sculpture11, 0, 0);
     sculpture11.resize(0, halfHeight * 1.5);
     pop();
@@ -248,7 +248,7 @@ class Hands {
 
   display() {
   scale(1.101); 
-  fill(252, 61, 192);
+  fill(255, 255, 255, 35);
   model(hand);
   }
 }
