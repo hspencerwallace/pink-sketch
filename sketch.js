@@ -91,7 +91,7 @@ function draw() {
   // camera rotation 
 // used to be sin 0.001
   camera(0, 20 + sin(frameCount * (0.05)) * 10, 200 + sin(frameCount * 0.015) * 3000, 0, 0, 0, 0, 1, 0);
-
+  // orbitControl();
   // -(?)z pink sky, second one you see
   push();
   imageMode(CENTER);
@@ -177,30 +177,39 @@ function draw() {
     pointLight(59, 196, 255, -0.5, -0.5, -1);
     pointLight(255, 220, 94, 0.5, 0.5, 5);
   
-    translate(0, -100, -100);
+    translate(0, 0, -100);
     specularMaterial(255);
     shininess(20);
     plane(windowWidth-10, windowHeight-80);
 
     pop();
  
-  //black window
+  //black window and title
     push();
     rect(0, -halfHeight+50, windowWidth, 100);
   	rect(0, halfHeight-150, windowWidth, 300);
   	rect(halfWidth-50, 0, 100, windowHeight);
   	rect(-halfWidth +50, 0, 100, windowHeight);
-     push();
-      translate(-1800, -100, 0);
-      image(pinknoise, 0, 0);
-      pinknoise.resize(0, halfHeight);
-    pop();
+
       push();
-      rotateY(PI);
-      translate(-1800, -100, 0);
+        rotateY(PI);
+        push();
+        // left 
+        rotateZ(PI/2);
+        translate(-550, -1600, 0);
+        image(pinknoise, 0, 0);
+        pinknoise.resize(1425, 0);
+        pop();
+      pop();
+
+
+      push();
+      // right 
+      rotateZ(PI/2);
+      translate(-550, -1600, 0);
       image(pinknoise, 0, 0);
-      pinknoise.resize(0, halfHeight);
-    pop();
+      pinknoise.resize(1425, 0);
+      pop();
   	pop();
 
 
@@ -248,7 +257,9 @@ class Hands {
 
   display() {
   scale(1.101); 
-  fill(255, 255, 255, 35);
+  //hot pink
+  fill(252, 61, 192);
+
   model(hand);
   }
 }
